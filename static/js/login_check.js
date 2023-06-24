@@ -3,7 +3,7 @@ function verifyPassword() {
     var emailInput = document.getElementById('userName');
     var emailValue = document.getElementById("userName").value;
 
-    if (!emailValue.endsWith('.com')) {
+    if (!emailValue.endsWith('@gmail.com')) {
         alert('Please enter a valid Gmail address.');
         emailInput.focus();
         return false;
