@@ -5,6 +5,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.db import IntegrityError
+
 
 
 def login_page(request):
@@ -75,32 +77,36 @@ def homePage(request,email):
 User = get_user_model()
 
 def signup_gpt(request):
-    if request.method == "POST":
-        global email
-        global password
-        global confirmPassword
-        email = request.POST.get('userName')
-        password = request.POST.get('userPassword')
-        confirmPassword = request.POST.get('ConfirmUserPassword')
+    try : 
+        if request.method == "POST":
+            global email
+            global password
+            global confirmPassword
+            email = request.POST.get('userName')
+            password = request.POST.get('userPassword')
+            confirmPassword = request.POST.get('ConfirmUserPassword')
 
-        # Save the registration data to the database
-        user = User.objects.create_user(username=email, password=password)
-        user.is_active = False
-        user.save()
+            # Save the registration data to the database
+            user = User.objects.create_user(username=email, password=password)
+            user.is_active = False
+            user.save()
 
-        # Generate a confirmation token
-        token = default_token_generator.make_token(user)
+            # Generate a confirmation token
+            token = default_token_generator.make_token(user)
 
-        # Construct the confirmation link
-        confirmation_link = reverse('confirm_registration', args=[user.pk, token])
-        confirm_url = request.build_absolute_uri(confirmation_link)
+            # Construct the confirmation link
+            confirmation_link = reverse('confirm_registration', args=[user.pk, token])
+            confirm_url = request.build_absolute_uri(confirmation_link)
 
-        # Send registration confirmation email
-        send_registration_confirmation_email(email, confirm_url)
+            # Send registration confirmation email
+            send_registration_confirmation_email(email, confirm_url)
 
-        messages.success(request, 'Registration successful! Please check your email for confirmation.')
-        return redirect('registerpage')
-
+            messages.success(request, 'Registration successful! Please check your email for confirmation.')
+            return redirect('registerpage')
+    except IntegrityError as e:
+            # Handle IntegrityError specifically for the signup process
+            messages.success(request, 'Username is already exists.')
+            return redirect('registerpage')  
     return render(request, 'register.html')
 
 def send_registration_confirmation_email(email, confirm_url):
