@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-5$^m0bjw$-*-#j2biae0=0-ty53&9y__8ex+=yv%ccqn4mr@%#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,19 +76,19 @@ WSGI_APPLICATION = 'LDBackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {  
-    'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'testdb',  
-        'USER': 'root',  
-        'PASSWORD': 'admin',  
-        'HOST': '127.0.0.1',  
-        'PORT': '3306',  
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }  
-    }  
-}  
+# DATABASES = {  
+#     'default': {  
+#         'ENGINE': 'django.db.backends.mysql',  
+#         'NAME': 'testdb',  
+#         'USER': 'root',  
+#         'PASSWORD': 'admin',  
+#         'HOST': '127.0.0.1',  
+#         'PORT': '3306',  
+#         'OPTIONS': {  
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+#         }  
+#     }  
+# }  
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -122,6 +123,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+MEDIA_URLS ='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [STATIC_DIR]
