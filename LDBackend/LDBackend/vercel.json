@@ -1,6 +1,6 @@
 {
     "builds": [{
-        "src": "LDBackend/wsgi.py",
+        "src": "EmailData/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
     },
@@ -16,7 +16,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "LDBackend/wsgi.py"
+            "dest": "EmailData/wsgi.py"
         }
     ]
 }
