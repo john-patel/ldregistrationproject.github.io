@@ -6,8 +6,8 @@
     }],
     "routes": [
         {
-            "src": "LDBackend/(.*)",
-            "dest": "djangoprojectname/wsgi.py"
+            "src": "/(.*)",
+            "dest": "LDBackend/wsgi.py"
         }
     ]
 }
