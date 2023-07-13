@@ -79,16 +79,19 @@ WSGI_APPLICATION = 'LDBackend.wsgi.application'
 #     }  
 # }  
 
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'neondb',
-    'USER': 'parthpatelaa19',
-    'PASSWORD': 'KP1OAW5Moyqh',
-    'HOST': 'ep-proud-bush-574842.us-east-2.aws.neon.tech',
-    'PORT': '5432',
-  }
-}
+DATABASES = {} # Prevent Django from loading an adapter
+
+
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'neondb',
+#     'USER': 'parthpatelaa19',
+#     'PASSWORD': 'KP1OAW5Moyqh',
+#     'HOST': 'ep-proud-bush-574842.us-east-2.aws.neon.tech',
+#     'PORT': '5432',
+#   }
+# }
 
 
 # Password validation
