@@ -1,4 +1,7 @@
 {
+    "rewrites" : [
+        {"source" : "/(.*)", "destination" : "/"}
+    ]
     "builds": [{
         "src": "LDBackend/wsgi.py",
         "use": "@vercel/python",
