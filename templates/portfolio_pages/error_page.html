@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>404 Not Found</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 16px;
+        margin-top: 0;
+      }
+
+      img {
+        width: 200px;
+        margin-bottom: 20px;
+      }
+    </style>
+    <script>
+      // Disable browser's back button
+      history.pushState(null, null, document.URL);
+      window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+      });
+    </script>
+  </head>
+  <body>
+    <img src="404-error.png" alt="404 Error" />
+    <h1>Oops! Page Not Found</h1>
+    <p>We're sorry, but the page you are looking for could not be found.</p>
+  </body>
+</html>
