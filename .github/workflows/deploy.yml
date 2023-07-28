@@ -1,0 +1,15 @@
+name: Vercel Deploy Complet Code Branch
+
+on:
+  push:
+    branches: [complete_code]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger Vercel Hook
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://api.vercel.com/v1/integrations/deploy/prj_7wWpbHWXIbG5HKEUa0LSxAv4vuaN/vXer2YGfa0'
+        method: 'GET'
