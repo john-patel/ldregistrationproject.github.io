@@ -24,9 +24,8 @@
       "dest": "LDBackend/wsgi.py"
     }
   ],
-  "functions": {
-    "api/LDBackend/wsgi.py": {
-      "maxDuration": 30
-    }
+  "server": {
+    "runtime": "vercel-python@0.24.0",
+    "maxDuration": 30
   }
 }
